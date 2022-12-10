@@ -1,3 +1,7 @@
+#      --------Part 1---------   --------Part 2---------
+# Day       Time    Rank  Score       Time    Rank  Score
+#  10   00:13:26    1972      0   00:47:32    4828      0
+
 f = open("data/day_10_input.txt")
 
 def part1(f):
