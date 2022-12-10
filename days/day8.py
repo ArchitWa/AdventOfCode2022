@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-inp = open("data/day_8_input.txt")
-size = 99
-def part1():
-    grid = [ [""]* size for i in range(size)]
-
-    i = 0
-    for line in inp.readlines():
-=======
 def part1():
     inp = open("data/day_8_input.txt")
     lines = inp.readlines()
@@ -15,69 +6,29 @@ def part1():
 
     i = 0
     for line in lines:
->>>>>>> master
         line = line.strip()
 
         for j in range(len(line)):
             grid[i][j] = line[j]
-<<<<<<< HEAD
-    
-        i += 1
-    
-=======
 
         i += 1
 
->>>>>>> master
     v_t = 0
 
     for r in range(size ):
         for c in range(size):
             tree = grid[r][c]
 
-<<<<<<< HEAD
-            t1, t2, t3, t4 = 0,0,0,0
-            for j in range(c):
-                if grid[r][j] < tree:
-                    t1 += 1
-            for j in range(c + 1, size):
-                if grid[r][j] < tree:
-                    t2 += 1
-            for j in range(r):
-                if grid[j][c] < tree:
-                    t3 += 1
-            for j in range(r + 1, size):
-                if grid[j][c] < tree:
-                    t4 += 1
-            if (t1 == c or t2 == size - c - 1 or t3 == r or t4 == size - r - 1):
-                v_t += 1
-        
-
-=======
             if (all(grid[r][j] < tree for j in range(c)) or 
                 all(grid[r][j] < tree for j in range(c + 1, size)) or 
                 all(grid[j][c] < tree for j in range(r)) or 
                 all(grid[j][c] < tree for j in range(r + 1, size))):
                 v_t += 1
             
->>>>>>> master
     print(v_t)
 
 
 def part2():
-<<<<<<< HEAD
-    grid = [ [""]* size for l in range(size)]
-
-    i = 0
-    for line in inp.readlines():
-        line = line.strip()
-
-        for j in range(len(line)):
-            grid[i][j] = line[j]
-    
-        i += 1
-    
-=======
     inp = open("data/day_8_input.txt")
     lines = inp.readlines()
     size = len(lines[0].strip())
@@ -91,7 +42,6 @@ def part2():
 
         i += 1
 
->>>>>>> master
     scores = []
 
     for r in range(size):
@@ -115,16 +65,9 @@ def part2():
                 d1 += 1
                 if grid[j][c] >= val:
                     break
-<<<<<<< HEAD
-        
-            scores.append(a1 * b1 * c1 * d1)
-    print(max(scores))
-    
-=======
 
             scores.append(a1 * b1 * c1 * d1)
     print(max(scores))
 
 part1()
->>>>>>> master
 part2()
