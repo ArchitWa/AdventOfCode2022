@@ -1,23 +1,17 @@
 
 inp = open('data/day_1_input.txt', "r")
 
-lines = inp.readlines()
 
-c = 0
-elf_cal = []
-for line in lines:
-    if line.strip():
-        c += int(line)
-    else:
-        elf_cal.append(c)
-        c = 0
+def part1():
+    print(max(sum(int(elf_cal) for elf_cal in elf.split()) for elf in inp.read().split("\n\n")))
 
+def part2():
+    elfs = [sum(int(elf_cal) for elf_cal in elf.split()) for elf in inp.read().split("\n\n")]
+    c = max(elfs)
+    elfs.remove(max(elfs))
+    c += max(elfs)
+    elfs.remove(max(elfs))
+    c += max(elfs)
+    print(c)
 
-c = max(elf_cal)
-elf_cal.remove(max(elf_cal))
-c += max(elf_cal)
-elf_cal.remove(max(elf_cal))
-c += max(elf_cal)
-
-
-print(c)
+part2()
