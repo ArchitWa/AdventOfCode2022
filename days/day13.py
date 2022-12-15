@@ -1,10 +1,6 @@
-# aocd > data/day_13_input.txt
-# python submit.py 13 a _
-# python submit.py 13 b _ 
+from functools import cmp_to_key
 
 inp = open("data/day_13_input.txt")
-
-#pairs = [[eval(x) for x in pair.splitlines()] for pair in inp.read().split("\n\n")]
 
 def find_score(l, r):
     if isinstance(l, int) and isinstance(r, int):
@@ -22,9 +18,8 @@ def find_score(l, r):
     if isinstance(r, list):
         return find_score([l], r)
 
-pairs = list(map(eval, inp.read().split()))
-
 def part1():
+    pairs = [[eval(x) for x in pair.splitlines()] for pair in inp.read().split("\n\n")]
     s = 0
     for p_c, (left, right) in enumerate(pairs):
         if find_score(left, right) < 0:
@@ -32,19 +27,13 @@ def part1():
     print(s)
     
             
-# part1()
+#part1()
 
 def part2():
-    two = 1
-    six = 2
-    for val in pairs:
-        s_l_2 = find_score(val, [[2]])
-        s_l_6 = find_score(val, [[6]])
-        if s_l_2 < 0:
-            two += 1
-            six += 1
-        if s_l_6 < 0 and s_l_2 > 0:
-            six += 1
-    print((two * six))
+    packets = list(map(eval, inp.read().split()))
+    packets.append(eval("[[2]]"))
+    packets.append(eval("[[6]]"))
+    packets = sorted(packets, cmp=cmp_to_key(find_score))
+    print((packets.index([[2]]) + 1)*(packets.index([[6]]) + 1))
 
 part2()
