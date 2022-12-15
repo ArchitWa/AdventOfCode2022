@@ -10,13 +10,10 @@ class Monkey:
         self.f_t = false_throw
 
 inp = open("data/day_11_input.txt")
-msg = ""
-for line in inp.readlines():
-    msg += line
 
 monkeys = []
 
-for monkey_txt in msg.split("\n\n"):
+for monkey_txt in inp.read().split("\n\n"):
     m_l = monkey_txt.split("\n")
     items = list(map(int, re.findall(r'\d+', m_l[1])))
     op = m_l[2].split(":")[1].strip()[6:].replace("old", "item")
@@ -39,11 +36,7 @@ def part1():
                     monkeys[monkey.f_t].items.append(w_l)
             monkey.items = []
                 
-    insp = []
-    for monkey in monkeys:
-        insp.append(monkey.inspections)
-    
-    insp = sorted(insp)
+    insp = sorted([monkey.inspections for monkey in monkeys])
     print(insp[-1] * insp[-2])
 
 def part2():
@@ -51,11 +44,9 @@ def part2():
     for monkey in monkeys:
         total_n *= monkey.test
 
-    insp = [0] * len(monkeys)
     for _ in range(10000):
-        i = 0
         for monkey in monkeys:
-            insp[i] += len(monkey.items)
+            monkey.inspections += len(monkey.items)
             for item in monkey.items:
                 w_l = eval(monkey.op) % total_n
 
@@ -64,9 +55,8 @@ def part2():
                 else:
                     monkeys[monkey.f_t].items.append(w_l)
             monkey.items = []
-            i += 1
-    insp.sort()
+    insp = sorted([monkey.inspections for monkey in monkeys])
     print(insp[-1] * insp[-2])
 
-part2()
+part1()
 

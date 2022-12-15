@@ -15,13 +15,9 @@ def part1():
     for line in inp.readlines():
         if line.startswith("move"):
             w = line.strip().split(" ")
-            for i in range(int(w[1])):
+            for _ in range(int(w[1])):
                 stacks[int(w[5])-1].append(stacks[int(w[3]) - 1].pop())
-    
-    r = ""
-    for i in stacks:
-        r += i.pop()
-    print(r)
+    print("".join([stack.pop() for stack in stacks]))
 
 def part2():
     for line in inp.readlines():
@@ -30,9 +26,6 @@ def part2():
             for i in range(int(w[1])):
                 stacks[int(w[5])-1].append(stacks[int(w[3]) - 1].pop(len(stacks[int(w[3]) - 1]) - int(w[1])+i))
     
-    r = ""
-    for i in stacks:
-        r += i.pop()
-    print(r)
+    print("".join([stack.pop() for stack in stacks]))
 
 part2()
